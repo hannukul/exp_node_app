@@ -1,0 +1,17 @@
+services:
+  web:
+    image: hannukul/exp_node_app:latest
+    ports:
+      - "8080:8080"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    restart: always
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --label-enable --interval 30
+    restart: always
+
